@@ -51,7 +51,7 @@
     console.log(a);
 //6
     console.log(a);
-    a = 13;//window.a=13
+    a = 13;    //window.a=13
     function fn() {
         console.log(a);
         a = 1;
@@ -117,21 +117,23 @@
             }
         }
         console.log(aa);
+
+---
 //13
         var a = 4;
         function b(x, y, b) {
-            console.log(a);
-            arguments[2] = 10;
-            console.log(a);
+            console.log(a);//4
+            arguments[2] = 10;// [1,2,10]
+            console.log(a);//4
         }
         a = b(1, 2, 3);
         console.log(a);
 //14.
         var fs = "hello";
-        (function (fs) {
-            console.log(fs);
-            var fs = fs || "world";
-            console.log(fs);
+        (function (fs) { // fs='hello' // var fs
+            console.log(fs);// 'hello'
+            var fs = fs || "world"; //''
+            console.log(fs); // 'hello'
         })(fs);
         console.log(fs);
 //15.
@@ -150,3 +152,32 @@
         var x = f(5);
         console.log(x);
         console.log(a);
+---
+// 16
+    var i =1 ;
+    function fn(i){
+        return function (n){
+            console.log(n+(++i))
+        }
+    }
+    var f = fn(2);
+    f(3)
+    fn(5)(6)
+    fn(7)(8)
+    f(4)
+
+// 17
+
+    var i =2
+    function fn (){
+        i +=2
+        return function (n){
+            console.log(n+(--n))
+        }
+    }
+    var f =fn();
+    f();
+    f(3)
+    fn()(2);
+    fn()(3);
+    f(4)
